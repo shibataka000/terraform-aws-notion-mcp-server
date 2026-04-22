@@ -1,13 +1,5 @@
 name: GitHub Actions
-on:
-  pull_request:
-    paths:
-      - ".github/workflows/*.yaml"
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/*.yaml"
+on: push
 jobs:
   actionlint:
     name: actionlint

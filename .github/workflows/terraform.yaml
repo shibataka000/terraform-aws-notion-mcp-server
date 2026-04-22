@@ -1,13 +1,5 @@
 name: Terraform
-on:
-  pull_request:
-    paths:
-      - "**.tf"
-  push:
-    branches:
-      - main
-    paths:
-      - "**.tf"
+on: push
 jobs:
   lint:
     name: Lint
