@@ -3,7 +3,7 @@
 .PHONY: init
 init:
 	terraform init
-	tflint ---init
+	tflint --init
 
 .PHONY: lint
 lint:
