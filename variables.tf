@@ -3,9 +3,10 @@ variable "agent_runtime_name" {
   type        = string
 }
 
-variable "container_uri" {
-  description = "URI of the container image in Amazon ECR."
+variable "image_tag" {
+  description = "Tag of the container image in Amazon ECR."
   type        = string
+  default     = "latest"
 }
 
 variable "environment_variables" {

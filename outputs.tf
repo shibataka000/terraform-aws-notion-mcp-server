@@ -13,6 +13,11 @@ output "agent_runtime_version" {
   value       = aws_bedrockagentcore_agent_runtime.this.agent_runtime_version
 }
 
+output "ecr_repository_url" {
+  description = "URL of the ECR repository."
+  value       = aws_ecr_repository.this.repository_url
+}
+
 output "role_arn" {
   description = "ARN of the IAM role used by the Agent Runtime."
   value       = aws_iam_role.this.arn

@@ -6,7 +6,7 @@ resource "aws_bedrockagentcore_agent_runtime" "this" {
 
   agent_runtime_artifact {
     container_configuration {
-      container_uri = var.container_uri
+      container_uri = "${aws_ecr_repository.this.repository_url}:${var.image_tag}"
     }
   }
 
