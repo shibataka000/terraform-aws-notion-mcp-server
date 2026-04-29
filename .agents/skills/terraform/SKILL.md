@@ -17,6 +17,8 @@ https://developer.hashicorp.com/terraform/language/style#file-names に従って
 
 ## Linting
 
+以下のコマンドを実行してください。
+
 ```bash
 make lint
 ```
