@@ -23,7 +23,7 @@ data "aws_iam_policy_document" "ecr_permissions" {
       "ecr:GetDownloadUrlForLayer",
     ]
     resources = [
-      "arn:aws:ecr:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:repository/*",
+      aws_ecr_repository.this.arn,
     ]
   }
 }
