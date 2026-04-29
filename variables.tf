@@ -1,9 +1,3 @@
-variable "region" {
-  description = "AWS region."
-  type        = string
-  default     = "ap-northeast-1"
-}
-
 variable "agent_runtime_name" {
   description = "Name of the Bedrock AgentCore Agent Runtime."
   type        = string
@@ -12,6 +6,12 @@ variable "agent_runtime_name" {
 variable "container_uri" {
   description = "URI of the container image in Amazon ECR."
   type        = string
+}
+
+variable "environment_variables" {
+  description = "Map of environment variables to pass to the container."
+  type        = map(string)
+  default     = {}
 }
 
 variable "network_mode" {
@@ -25,10 +25,10 @@ variable "network_mode" {
   }
 }
 
-variable "subnet_ids" {
-  description = "Subnet IDs for VPC network mode."
-  type        = list(string)
-  default     = []
+variable "region" {
+  description = "AWS region."
+  type        = string
+  default     = "ap-northeast-1"
 }
 
 variable "security_group_ids" {
@@ -37,10 +37,10 @@ variable "security_group_ids" {
   default     = []
 }
 
-variable "environment_variables" {
-  description = "Map of environment variables to pass to the container."
-  type        = map(string)
-  default     = {}
+variable "subnet_ids" {
+  description = "Subnet IDs for VPC network mode."
+  type        = list(string)
+  default     = []
 }
 
 variable "tags" {
