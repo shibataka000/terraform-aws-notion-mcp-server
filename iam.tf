@@ -34,8 +34,13 @@ resource "aws_iam_role" "this" {
   tags               = var.tags
 }
 
-resource "aws_iam_role_policy" "ecr" {
-  name   = "ecr-access"
-  role   = aws_iam_role.this.id
+resource "aws_iam_policy" "ecr" {
+  name   = "${local.name}-ecr-access"
   policy = data.aws_iam_policy_document.ecr_permissions.json
+  tags   = var.tags
+}
+
+resource "aws_iam_role_policy_attachment" "ecr" {
+  role       = aws_iam_role.this.name
+  policy_arn = aws_iam_policy.ecr.arn
 }
