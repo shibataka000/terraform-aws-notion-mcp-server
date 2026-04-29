@@ -3,6 +3,13 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 }
 
+resource "aws_flow_log" "main" {
+  vpc_id          = aws_vpc.main.id
+  traffic_type    = "ALL"
+  iam_role_arn    = aws_iam_role.vpc_flow_logs.arn
+  log_destination = aws_cloudwatch_log_group.vpc_flow_logs.arn
+}
+
 resource "aws_subnet" "public" {
   count = 2
 
@@ -51,7 +58,6 @@ resource "aws_nat_gateway" "private" {
 
   allocation_id = aws_eip.private[count.index].id
   subnet_id     = aws_subnet.public[count.index].id
-
 }
 
 resource "aws_route_table" "private" {
