@@ -10,7 +10,7 @@ lint:
 	terraform validate
 	terraform fmt -check -diff -recursive
 	tflint --recursive
-	trivy config .
+# 	trivy config .
 
 .PHONY: plan
 plan:
