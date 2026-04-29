@@ -20,5 +20,9 @@ plan:
 apply:
 	terraform apply
 
+.PHONY: clean
+clean:
+	rm -rf .terraform
+
 .PHONY: help
 help:
