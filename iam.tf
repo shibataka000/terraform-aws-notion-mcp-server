@@ -11,34 +11,27 @@ data "aws_iam_policy_document" "assume_role" {
 
 data "aws_iam_policy_document" "ecr_permissions" {
   statement {
-    effect    = "Allow"
     actions   = ["ecr:GetAuthorizationToken"]
+    effect    = "Allow"
     resources = ["*"]
   }
 
   statement {
-    effect = "Allow"
     actions = [
       "ecr:BatchGetImage",
-      "ecr:GetDownloadUrlForLayer",
+      "ecr:GetDownloadUrlForLayer"
     ]
-    resources = [
-      aws_ecr_repository.this.arn,
-    ]
+    effect    = "Allow"
+    resources = [aws_ecr_repository.example.arn]
   }
 }
 
-resource "aws_iam_role" "this" {
-  name               = local.name
+resource "aws_iam_role" "example" {
+  name               = "bedrock-agentcore-runtime-role"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
-resource "aws_iam_policy" "ecr" {
-  name   = "${local.name}-ecr-access"
+resource "aws_iam_role_policy" "example" {
+  role   = aws_iam_role.example.id
   policy = data.aws_iam_policy_document.ecr_permissions.json
-}
-
-resource "aws_iam_role_policy_attachment" "ecr" {
-  role       = aws_iam_role.this.name
-  policy_arn = aws_iam_policy.ecr.arn
 }
