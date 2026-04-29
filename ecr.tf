@@ -16,7 +16,6 @@ resource "aws_kms_key" "ecr" {
   deletion_window_in_days = 7
   enable_key_rotation     = true
   policy                  = data.aws_iam_policy_document.ecr_kms.json
-  tags                    = var.tags
 }
 
 resource "aws_ecr_repository" "this" {
@@ -32,5 +31,4 @@ resource "aws_ecr_repository" "this" {
     scan_on_push = true
   }
 
-  tags = var.tags
 }

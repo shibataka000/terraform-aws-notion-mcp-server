@@ -2,7 +2,6 @@ resource "aws_bedrockagentcore_agent_runtime" "this" {
   agent_runtime_name    = local.name
   role_arn              = aws_iam_role.this.arn
   environment_variables = var.environment_variables
-  tags                  = var.tags
 
   agent_runtime_artifact {
     container_configuration {

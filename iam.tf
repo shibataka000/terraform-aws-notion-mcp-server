@@ -31,13 +31,11 @@ data "aws_iam_policy_document" "ecr_permissions" {
 resource "aws_iam_role" "this" {
   name               = local.name
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
-  tags               = var.tags
 }
 
 resource "aws_iam_policy" "ecr" {
   name   = "${local.name}-ecr-access"
   policy = data.aws_iam_policy_document.ecr_permissions.json
-  tags   = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "ecr" {
