@@ -1,10 +1,10 @@
-resource "aws_bedrockagentcore_agent_runtime" "example" {
-  agent_runtime_name = "example_agent_runtime"
-  role_arn           = aws_iam_role.example.arn
+resource "aws_bedrockagentcore_agent_runtime" "main" {
+  agent_runtime_name = "notion_mcp_server"
+  role_arn           = aws_iam_role.bedrockagentcore_agent_runtime.arn
 
   agent_runtime_artifact {
     container_configuration {
-      container_uri = "${aws_ecr_repository.example.repository_url}:latest"
+      container_uri = var.container_uri
     }
   }
 

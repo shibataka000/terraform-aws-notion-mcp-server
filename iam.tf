@@ -1,4 +1,4 @@
-data "aws_iam_policy_document" "assume_role" {
+data "aws_iam_policy_document" "bedrockagentcore_assume_role_policy" {
   statement {
     effect  = "Allow"
     actions = ["sts:AssumeRole"]
@@ -9,7 +9,7 @@ data "aws_iam_policy_document" "assume_role" {
   }
 }
 
-data "aws_iam_policy_document" "ecr_permissions" {
+data "aws_iam_policy_document" "bedrockagentcore_agent_runtime" {
   statement {
     actions   = ["ecr:GetAuthorizationToken"]
     effect    = "Allow"
@@ -22,16 +22,21 @@ data "aws_iam_policy_document" "ecr_permissions" {
       "ecr:GetDownloadUrlForLayer"
     ]
     effect    = "Allow"
-    resources = [aws_ecr_repository.example.arn]
+    resources = [var.container_uri]
   }
 }
 
-resource "aws_iam_role" "example" {
-  name               = "bedrock-agentcore-runtime-role"
-  assume_role_policy = data.aws_iam_policy_document.assume_role.json
+resource "aws_iam_role" "bedrockagentcore_agent_runtime" {
+  name_prefix        = "notion-mcp-server-"
+  assume_role_policy = data.aws_iam_policy_document.bedrockagentcore_assume_role_policy.json
 }
 
-resource "aws_iam_role_policy" "example" {
-  role   = aws_iam_role.example.id
-  policy = data.aws_iam_policy_document.ecr_permissions.json
+resource "aws_iam_policy" "bedrockagentcore_agent_runtime" {
+  name_prefix = "notion-mcp-server-"
+  policy      = data.aws_iam_policy_document.bedrockagentcore_agent_runtime.json
+}
+
+resource "aws_iam_role_policy_attachment" "bedrockagentcore_agent_runtime" {
+  role       = aws_iam_role.bedrockagentcore_agent_runtime.name
+  policy_arn = aws_iam_policy.bedrockagentcore_agent_runtime.arn
 }
