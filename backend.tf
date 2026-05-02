@@ -1,7 +1,8 @@
-# terraform {
-#   backend "s3" {
-#     bucket = "my-terraform-state"
-#     key    = "terraform.tfstate"
-#     region = "us-east-1"
-#   }
-# }
+terraform {
+  backend "s3" {
+    bucket       = "sbtk-tfstate"
+    key          = "terraform-aws-notion-mcp-server"
+    region       = "ap-northeast-1"
+    use_lockfile = true
+  }
+}
