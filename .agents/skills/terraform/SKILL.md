@@ -1,23 +1,21 @@
 ---
 name: terraform
-description: Terraformに関する規約です。
+description: Terraformに関するコーディング規約です。
 allowed-tools: Bash(make lint)
 ---
 
 # Terraform
 
-## Style Guide
+## Style guide
 
-https://developer.hashicorp.com/terraform/language/style に従ってください。
+- https://developer.hashicorp.com/terraform/language/style に従ってください。
 
 ## File names
 
-https://developer.hashicorp.com/terraform/language/style#file-names に従ってください。
-`main.tf` の代わりにAWSサービス単位でファイルを作成してください。
+- https://developer.hashicorp.com/terraform/language/style#file-names に従ってください。
+- リソース・データソースはAWSサービス単位でファイルを作成してください。
 
 ## Linting
-
-以下のコマンドを実行してください。
 
 ```bash
 make lint
