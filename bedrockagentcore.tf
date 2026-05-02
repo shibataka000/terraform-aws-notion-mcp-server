@@ -1,5 +1,5 @@
 resource "aws_bedrockagentcore_agent_runtime" "main" {
-  agent_runtime_name = "notion_mcp_server"
+  agent_runtime_name = replace(var.name, "-", "_")
   role_arn           = aws_iam_role.bedrockagentcore_agent_runtime.arn
 
   agent_runtime_artifact {
