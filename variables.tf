@@ -1,3 +1,4 @@
 variable "container_uri" {
-  type = string
+  type        = string
+  description = "The URI of the container image for the Notion MCP server."
 }
