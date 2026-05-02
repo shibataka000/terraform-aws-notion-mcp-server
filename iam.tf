@@ -27,13 +27,13 @@ data "aws_iam_policy_document" "bedrockagentcore_agent_runtime" {
 }
 
 resource "aws_iam_role" "bedrockagentcore_agent_runtime" {
-  name_prefix        = "${var.name}-"
+  name               = var.name
   assume_role_policy = data.aws_iam_policy_document.bedrockagentcore_assume_role_policy.json
 }
 
 resource "aws_iam_policy" "bedrockagentcore_agent_runtime" {
-  name_prefix = "${var.name}-"
-  policy      = data.aws_iam_policy_document.bedrockagentcore_agent_runtime.json
+  name   = var.name
+  policy = data.aws_iam_policy_document.bedrockagentcore_agent_runtime.json
 }
 
 resource "aws_iam_role_policy_attachment" "bedrockagentcore_agent_runtime" {
